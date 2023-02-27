@@ -39,11 +39,21 @@ galleryRef.addEventListener("click", (e) => {
     )}">
 `);
 
-  instance.show();
+  onOpenModal();
 
-  galleryRef.addEventListener("keydown", (e) => {
+  function onOpenModal() {
+    window.addEventListener("keydown", onEscapePress);
+    instance.show();
+  }
+
+  function onCloseModal() {
+    window.removeEventListener("keydown", onEscapePress);
+    instance.close();
+  }
+
+  function onEscapePress(e) {
     if (e.code === "Escape") {
-      instance.close();
+      onCloseModal();
     }
-  });
+  }
 });
